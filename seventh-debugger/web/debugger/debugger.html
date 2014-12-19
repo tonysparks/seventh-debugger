@@ -1,0 +1,164 @@
+<!DOCTYPE HTML>
+<html lang="en" ng-app="seventhDebugger" >
+    <head>    
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		
+		
+		<link rel="stylesheet" href="css/bootstrap.css" >
+		<link rel="stylesheet" href="css/seventh_debugger.css" >		
+    </head>
+    <body>				
+		<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+		  <div class="container-fluid">
+			<div class="navbar-header">
+			  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			  </button>
+			  <a class="navbar-brand" href="#">Seventh Debugger</a>
+			</div>
+			<div id="navbar" class="navbar-collapse collapse">
+			  <ul class="nav navbar-nav navbar-right">
+				<li><a href="javascript:connect();">Connect</a></li>
+				<li><a href="javascript:disconnect();">Disconnect</a></li>
+				<li><a href="javascript:togglePause();" id="pauseBtnId">Pause</a></li>				
+			  </ul>
+			  
+			  <!--
+			  <form class="navbar-form navbar-right">
+				<input type="text" class="form-control" placeholder="Search...">
+			  </form>
+			  -->
+			  
+			</div>
+		  </div>
+		</nav>
+
+		<div class="container-fluid">
+		  <div class="row">
+			<div class="col-sm-3 col-md-2 sidebar">
+			  <ul class="nav nav-sidebar">
+				<li class="active"><a href="#">Overview<span class="sr-only">(current)</span></a></li>
+				<li><a href="#">Reports</a></li>
+				<li><a href="#">Analytics</a></li>
+				<li><a href="#">Export</a></li>
+			  </ul>
+			  <ul class="nav nav-sidebar">
+				<li><a href="">Nav item</a></li>
+				<li><a href="">Nav item again</a></li>
+				<li><a href="">One more nav</a></li>
+				<li><a href="">Another nav item</a></li>
+				<li><a href="">More navigation</a></li>
+			  </ul>
+			  <ul class="nav nav-sidebar">
+				<li><a href="">Nav item again</a></li>
+				<li><a href="">One more nav</a></li>
+				<li><a href="">Another nav item</a></li>
+			  </ul>
+			</div>
+			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+			  <h1 class="page-header">Game View</h1>
+			  
+			  <div id="divCanvas">          
+				<canvas id="myCanvas" width="1000" height="600" style="border:2px solid #000000;">
+					Your browser does not support the HTML5 canvas tag.
+				</canvas>
+			  </div>
+
+			  <div id="brains" ng-show="false" >
+				  <h2 id="subHeaderId" class="sub-header">Brains</h2>
+				  <div id="brainsPanelId" class="table-responsive" ng-controller="BrainsCtrl">
+					<table class="table table-striped">
+					  <thead>
+						<tr>
+						  <th># ID</th>
+						  <th>Goals</th>
+						  <th>Thoughts</th>					  
+						</tr>
+					  </thead>
+					  <tbody>
+						<tr ng-repeat="brain in brains">
+						  <td>{{brain.entity_id}}</td>
+						  <td>{{brain.goals}}</td>
+						  <td>
+							 <table class="table table-striped">
+								<thead>
+									<tr>
+										<th>Stuck Timer</th>
+										<th>Attackable Entities</th>
+										<th>ThinkListener</th>					  
+									</tr>
+								</thead>	 
+								<tbody>																
+									<tr> 
+										<td>{{brain.thoughts.stuck_timer}}</td>
+										<td>{{brain.thoughts.attackable_entities}}</td>
+										<td>{{brain.thoughts.think_listener}} </td>
+									</tr> 
+								</tbody>
+							 </table>
+						  </td>
+						</tr>
+					  </tbody>
+					</table>
+				  </div>
+			  </div>
+			</div>
+		  </div>
+		</div>	
+	
+	
+	<!--
+        <div id="container">
+			<div id="controls" class="center-block">
+				<button type="button" class="btn btn-default" onclick="connect();">Connect</button>
+				<button type="button" class="btn btn-default" onclick="disconnect();">Disconnect</button>
+				<button id="pauseBtnId" type="button" class="btn btn-default" onclick="togglePause();">Pause</button>												
+			</div>
+            <div id="divCanvas">          
+				<canvas id="myCanvas" width="1900" height="600" style="border:2px solid #000000;">
+					Your browser does not support the HTML5 canvas tag.
+				</canvas>
+			</div>
+			<div id="json">				
+			</div>
+			
+			<div id="playerInfo" class="well">
+				<div id="basic">
+					<div>id:<span id="id"></span></div>
+					<div>state:<span id="state"></span></div>
+					<div>pos:<span id="pos"></span></div>
+					<div>facing:<span id="facing"></span></div>
+					<div>orientation:<span id="orientation"></span></div>
+					<div>health:<span id="health"></span></div>
+				</div>
+			</div>
+			
+			
+			<div id="aiInfo" class="well">								
+				<div id="alliedStrategyId">					
+				</div>
+				
+				<div id="axisStrategyId">					
+				</div>
+				
+				<div id="brainsId">
+				</div>
+			</div>
+			
+        </div>
+		-->
+		
+		<script src="js/jquery-2.1.1.min.js"></script>	
+		<script src="js/seventh_debugger.js"></script>
+		
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/docs.min.js"></script>
+		<script src="js/angular.min.js"></script>
+		<script src="js/seventh_controllers.js"></script>
+    </body>
+</html>
