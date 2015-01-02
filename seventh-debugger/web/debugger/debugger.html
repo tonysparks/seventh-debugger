@@ -69,21 +69,25 @@
 				</canvas>
 			  </div>
 
-			  <div id="brains" ng-show="false" >
+			  <div id="brains" ng-show="true" >
 				  <h2 id="subHeaderId" class="sub-header">Brains</h2>
 				  <div id="brainsPanelId" class="table-responsive" ng-controller="BrainsCtrl">
-					<table class="table table-striped">
+					<table class="table table-striped" width="100%">
 					  <thead>
 						<tr>
-						  <th># ID</th>
-						  <th>Goals</th>
-						  <th>Thoughts</th>					  
+						  <th class="col-md-1"># ID</th>						  
+						  <th class="col-md-1">Stuck Timer</th>
+						  <th class="col-md-1">Attackable Entities</th>
+						  <th class="col-md-5">ThinkListener</th>						  
 						</tr>
 					  </thead>
 					  <tbody>
 						<tr ng-repeat="brain in brains">
-						  <td>{{brain.entity_id}}</td>
-						  <td>{{brain.goals}}</td>
+						  <td>{{brain.entity_id}}</td>	
+						  <td>{{brain.thoughts.stuck_timer}}</td>
+						  <td>{{brain.thoughts.attackable_entities}}</td>
+						  <td>{{brain.thoughts.think_listener.long_term_goal}}</td>
+						  <!--
 						  <td>
 							 <table class="table table-striped">
 								<thead>
@@ -97,11 +101,12 @@
 									<tr> 
 										<td>{{brain.thoughts.stuck_timer}}</td>
 										<td>{{brain.thoughts.attackable_entities}}</td>
-										<td>{{brain.thoughts.think_listener}} </td>
+										<td>{{brain.thoughts.think_listener.long_term_goal}}</td>
 									</tr> 
 								</tbody>
 							 </table>
 						  </td>
+						  -->
 						</tr>
 					  </tbody>
 					</table>
@@ -157,7 +162,7 @@
 		<script src="js/seventh_debugger.js"></script>
 		
 		<script src="js/bootstrap.min.js"></script>
-		<script src="js/docs.min.js"></script>
+		<!-- <script src="js/docs.min.js"></script> -->
 		<script src="js/angular.min.js"></script>
 		<script src="js/seventh_controllers.js"></script>
     </body>

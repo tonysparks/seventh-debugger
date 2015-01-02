@@ -9,15 +9,14 @@ seventhDebugger.controller('BrainsCtrl', function ($scope) {
 			var b = ai.brains[i];
 			if (b==null) {
 				brains[i] = {
-					entity_id: i,
-					goals: 'None',
-					thoughts: 'None'
+					entity_id: i,					
+					thoughts: null
 				}
 			}
-			else {
+			else 
+			{
 				brains[i] = {
-					entity_id: JSON.stringify(b.entity_id),
-					goals: JSON.stringify(b.goals.actions),
+					entity_id: JSON.stringify(b.entity_id),					
 					thoughts: b.thoughts
 				}		
 			}

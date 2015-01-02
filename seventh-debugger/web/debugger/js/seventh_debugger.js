@@ -11,7 +11,8 @@ function connect()
 	 ws.onopen = function() {             
 	 };
 	 ws.onmessage = function (event)  { 
-		if (! paused ) {
+		if (! paused ) {			
+			//console.log(event.data);
 			refreshUI(event.data);
 		}
 	 };
@@ -100,7 +101,9 @@ canvas.addEventListener('mouseup', function(evt) {
 	mouse.y = pos.y;
 	mouse.pressedBtns[evt.button] = false;
 	
-	checkIfPlayerSelected(gameState, mouse);
+	if(gameState != null) {
+		checkIfPlayerSelected(gameState, mouse);
+	}
 	
 }, false);
 
@@ -145,6 +148,9 @@ function onSelectedEntity(entity) {
 }
 
 function updateSelectedEntity(entity) {
+//TEMP to always follow bot
+selectedEntity = 0;
+
 	if(selectedEntity != null) {
 		if(selectedEntity == entity.id) {
 		
@@ -221,12 +227,13 @@ function refreshUI(gs) {
 	camera.width = c.width;
 	camera.height = c.height;
 	
-	moveCamera(camera)
+	moveCamera(camera);
 	
 	
-	//console.log(gameState)
-	//document.getElementById("json").innerHTML = gameState;
-	gameState = JSON.parse(gs);
+	//console.log(gameState);
+	//document.getElementById("json").innerHTML = gameState;	
+	gameState = JSON.parse(gs);	
+	
 	
 	//ctx.scale(0.5, 0.5)
 	
@@ -406,30 +413,4 @@ function drawEntity(context, camera, entity) {
 
 function updateAI(ai) {
 	$('#brainsPanelId').scope().updateAI(ai);
-
-/*
-	console.log(ai);
-	
-	var brains = $('#brainsId');
-	var html = '<table width="100%">';
-	html += '<thead> <th>ID</th><th>Goals</th><th>Thoughts</th></thead>';
-	html += '<tbody>'
-	for(var i = 0; i < ai.brains.length; i++ ) {
-		var b = ai.brains[i];
-		if (b==null) {
-			html += '<tr>';
-			html += '	<td>' + i + '</td><td>None</td><td>None</td>';
-			html += '</tr>';					
-		}
-		else {
-			html += '<tr>';
-			html += '	<td>' + JSON.stringify(b.entity_id) + '</td><td>' 
-				 + JSON.stringify(b.goals.actions) + '</td><td>' + JSON.stringify(b.thoughts) + '</td>';
-			html += '</tr>';
-		}
-	}
-	html += '<tbody>'
-	html += '</table>';
-	
-	brains.html(html);	*/
 }

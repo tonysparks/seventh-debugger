@@ -140,7 +140,8 @@ public class SeventhDebugger implements DebugableListener {
 			@Override
 			public void run() {
 				try {
-					start(config.getConfig().getInt("debugger", "port"));
+					start(config.getConfig().getStr("./web", "debugger", "resourceBase"),
+						  config.getConfig().getInt("debugger", "port"));
 				}
 				catch(Exception e) {
 					e.printStackTrace();
@@ -149,20 +150,31 @@ public class SeventhDebugger implements DebugableListener {
 		});
 	}
 	
+	
 	/**
-	 * Starts the debugger
+	 * Starts the debugger with the resource base pointed to the ./web
 	 * 
 	 * @param port
 	 * @throws Exception
 	 */
 	public void start(int port) throws Exception {
+		start("./web", port);
+	}
+	
+	/**
+	 * Starts the debugger
+	 * 
+	 * @param port
+	 * @param resourceBase the file path to the base directory of the web components
+	 * @throws Exception
+	 */
+	public void start(String resourceBase, int port) throws Exception {
 		executorService.scheduleAtFixedRate(updateWorker, 0, 33, TimeUnit.MILLISECONDS);
 		
 		server = new Server(port);
-
+		
 		String contextPath = "/seventh";
 		//String resourceBase = "C:\\JavaProjects\\seventh-debugger/web";
-		String resourceBase = "./web";
 		
 		HandlerList handlers = new HandlerList();
 		server.setHandler(handlers);
@@ -246,11 +258,17 @@ public class SeventhDebugger implements DebugableListener {
 	 */
 	@Override
 	public void shutdown() {
-		if(server != null) {
-			server.destroy();
+		try {
+			if(server != null) {		
+				server.stop();
+				server.destroy();
+			}
+			
+			this.executorService.shutdownNow();
 		}
-		
-		this.executorService.shutdownNow();
+		catch(Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 }
