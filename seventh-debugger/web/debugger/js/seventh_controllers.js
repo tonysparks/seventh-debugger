@@ -10,14 +10,16 @@ seventhDebugger.controller('BrainsCtrl', function ($scope) {
 			if (b==null) {
 				brains[i] = {
 					entity_id: i,					
-					thoughts: null
+					thoughts: null,
+					locomotion: null					
 				}
 			}
 			else 
 			{
 				brains[i] = {
 					entity_id: JSON.stringify(b.entity_id),					
-					thoughts: b.thoughts
+					thoughts: b.thoughts,
+					locomotion: b.locomotion
 				}		
 			}
 		}

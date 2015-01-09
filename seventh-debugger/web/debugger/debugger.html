@@ -75,17 +75,21 @@
 					<table class="table table-striped" width="100%">
 					  <thead>
 						<tr>
-						  <th class="col-md-1"># ID</th>						  
-						  <th class="col-md-1">Stuck Timer</th>
+						  <th class="col-md-1"># ID</th>						  						  
 						  <th class="col-md-1">Attackable Entities</th>
+						  <th class="col-md-1">Hands</th>
+						  <th class="col-md-1">Facing</th>
+						  <th class="col-md-1">Feet</th>
 						  <th class="col-md-5">ThinkListener</th>						  
 						</tr>
 					  </thead>
 					  <tbody>
 						<tr ng-repeat="brain in brains">
 						  <td>{{brain.entity_id}}</td>	
-						  <td>{{brain.thoughts.stuck_timer}}</td>
 						  <td>{{brain.thoughts.attackable_entities}}</td>
+						  <td>{{brain.locomotion.hands}}</td>
+						  <td>{{brain.locomotion.facing}}</td>
+						  <td>{{brain.locomotion.feet}}</td>						  
 						  <td>{{brain.thoughts.think_listener.long_term_goal}}</td>
 						  <!--
 						  <td>
